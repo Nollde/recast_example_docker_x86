@@ -1,0 +1,13 @@
+stages:
+- name: hello_world_stage
+  dependencies: [init]
+  scheduler:
+    scheduler_type: singlestep-stage
+    # The parameter values set here are the values that will be used in the
+    # workflow step referenced in step below.
+    # Parameters are usually set in `example_inputs` in the recast spec file
+    # recast.yml.
+    parameters:
+      name: {step: init, output: input_name}
+      outputfile: '{workdir}/hello_world.txt'
+    step: {$ref: 'steps.yml#hello_world'}

@@ -1,0 +1,3 @@
+2023-10-24 17:25:15,233 | pack.hello_world_sta |   INFO | starting file logging for topic: pull
+2023-10-24 17:25:16,319 | pack.hello_world_sta |   INFO | b'v0.3.0: Pulling from recast/recastatlas'
+2023-10-24 17:25:16,320 | pack.hello_world_sta |   INFO | b'no matching manifest for linux/arm64/v8 in the manifest list entries'

@@ -1,0 +1,9 @@
+========== ADAGE LOG BEGIN at 2023-10-24T17:24:57.519102 ==========
+---------- snapshot at 2023-10-24T17:24:57.520306
+---------- snapshot at 2023-10-24T17:25:08.362460
+name: init obj: </init:0|defined|known> submitted: True
+name: hello_world_stage obj: </hello_world_stage:0|defined|known> submitted: False
+---------- snapshot at 2023-10-24T17:25:45.921942
+name: init obj: </init:0|success|known> submitted: True
+name: hello_world_stage obj: </hello_world_stage:0|failed|known> submitted: True
+========== ADAGE LOG END at 2023-10-24T17:25:45.922627 ==========

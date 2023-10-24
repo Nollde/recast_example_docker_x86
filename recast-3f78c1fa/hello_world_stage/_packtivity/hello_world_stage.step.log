@@ -1,0 +1,74 @@
+2023-10-24 17:25:13,259 | pack.hello_world_sta |   INFO | starting file logging for topic: step
+2023-10-24 17:25:15,227 | pack.hello_world_sta |  DEBUG | script is:
+2023-10-24 17:25:15,227 | pack.hello_world_sta |  DEBUG | 
+--------------
+echo Hello my Name is standard model | tee /Users/dnoll/drive/projects/recast-examples/docker_x86/recast-3f78c1fa/hello_world_stage/hello_world.txt
+
+--------------
+2023-10-24 17:25:15,228 | pack.hello_world_sta |  DEBUG | 
+--------------
+run in docker container image: recast/recastatlas
+with env: default env
+resources: []
+--------------
+    
+2023-10-24 17:25:15,229 | pack.hello_world_sta |  DEBUG | do_auth: False do_cvmfs: False
+2023-10-24 17:25:15,230 | pack.hello_world_sta |  DEBUG | rspec is
+{
+    "mounts": [
+        {
+            "type": "bind",
+            "source": "/Users/dnoll/drive/projects/recast-examples/docker_x86/recast-3f78c1fa/hello_world_stage",
+            "destination": "/Users/dnoll/drive/projects/recast-examples/docker_x86/recast-3f78c1fa/hello_world_stage",
+            "readonly": false
+        },
+        {
+            "type": "bind",
+            "source": "/Users/dnoll/drive/projects/recast-examples/docker_x86/recast-3f78c1fa/init",
+            "destination": "/Users/dnoll/drive/projects/recast-examples/docker_x86/recast-3f78c1fa/init",
+            "readonly": false
+        }
+    ],
+    "image": "recast/recastatlas:v0.3.0",
+    "workdir": null,
+    "argv": [
+        "sh",
+        "-c",
+        "sh"
+    ],
+    "stdin": "echo Hello my Name is standard model | tee /Users/dnoll/drive/projects/recast-examples/docker_x86/recast-3f78c1fa/hello_world_stage/hello_world.txt\n",
+    "tty": false,
+    "env": []
+}
+2023-10-24 17:25:15,231 | pack.hello_world_sta |  DEBUG | command: 
+docker pull recast/recastatlas:v0.3.0
+2023-10-24 17:25:15,231 | pack.hello_world_sta |  DEBUG | stdin if any: None
+2023-10-24 17:25:15,241 | pack.hello_world_sta |  DEBUG | started subprocess with pid 59. now wait to finish
+2023-10-24 17:25:16,323 | pack.hello_world_sta |  DEBUG | container execution subprocess finished. return code: 1
+2023-10-24 17:25:16,324 | pack.hello_world_sta |  ERROR | non-zero return code raising exception
+2023-10-24 17:25:16,325 | pack.hello_world_sta |  ERROR | subprocess failed. code: 1,  command docker pull recast/recastatlas:v0.3.0
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/site-packages/packtivity/handlers/execution_handlers.py", line 338, in execute_and_tail_subprocess
+    raise subprocess.CalledProcessError(
+subprocess.CalledProcessError: Command 'docker pull recast/recastatlas:v0.3.0' returned non-zero exit status 1.
+2023-10-24 17:25:16,329 | pack.hello_world_sta |  DEBUG | finally for docker pull recast/recastatlas:v0.3.0
+2023-10-24 17:25:16,329 | pack.hello_world_sta |  ERROR | job execution if job {'name': 'hello_world_stage', 'wflow_node_id': '4839bee5-2f8b-401c-b402-d42e70bbc9eb', 'wflow_offset': '', 'wflow_stage': 'hello_world_stage', 'wflow_stage_node_idx': 0, 'wflow_hints': {'is_purepub': False}} raise exception exception
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/site-packages/packtivity/handlers/execution_handlers.py", line 338, in execute_and_tail_subprocess
+    raise subprocess.CalledProcessError(
+subprocess.CalledProcessError: Command 'docker pull recast/recastatlas:v0.3.0' returned non-zero exit status 1.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/site-packages/packtivity/syncbackends.py", line 192, in run_packtivity
+    run_in_env(job, env, state, metadata, pack_config, exec_config)
+  File "/usr/lib/python3.8/site-packages/packtivity/syncbackends.py", line 130, in run_in_env
+    return handler(exec_config, environment, state, job, metadata)
+  File "/usr/lib/python3.8/site-packages/packtivity/handlers/execution_handlers.py", line 466, in docker_enc_handler
+    result = run(config, state, log, metadata, rspec)
+  File "/usr/lib/python3.8/site-packages/packtivity/handlers/execution_handlers.py", line 399, in run_containers_in_docker_runtime
+    execute_and_tail_subprocess(
+  File "/usr/lib/python3.8/site-packages/packtivity/handlers/execution_handlers.py", line 346, in execute_and_tail_subprocess
+    raise RuntimeError("failed container execution subprocess. %s", command_string)
+RuntimeError: ('failed container execution subprocess. %s', 'docker pull recast/recastatlas:v0.3.0')

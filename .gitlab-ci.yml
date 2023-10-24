@@ -1,0 +1,62 @@
+tests:
+  tags:
+  - docker-privileged
+  services:
+  - docker:stable-dind
+  image: recast/recastatlas:v0.3.0
+  variables:
+   RECAST_DEFAULT_RUN_BACKEND: local
+  script:
+
+  # add the workflow
+  # Use a subshell for catalogue add to evaluate the shell export it produces
+  - $(recast catalogue add $PWD)
+  - recast catalogue ls
+  - recast catalogue describe examples/helloworld
+  - recast catalogue check examples/helloworld
+
+  # run the tests
+  - recast tests ls examples/helloworld
+  - recast tests run examples/helloworld test_hello_world --backend docker --tag hello-world
+
+  # copy the outputfile
+  - cp -r inputdata recast-test-hello-world/
+
+  artifacts:
+    paths:
+    - recast-test-hello-world
+    expire_in: 1 day
+    when: always
+
+recast:
+  tags:
+  - docker-privileged
+  services:
+  - docker:stable-dind
+  image: recast/recastatlas:v0.3.0
+  variables:
+   RECAST_DEFAULT_RUN_BACKEND: local
+  script:
+
+  # Authentication. Uncomment the first line if you need to authenticate to pull your analysis image(s). Uncomment the second line if you need to authenticate to download inputs from eos via xrootd
+  #- eval "$(recast auth setup -a $RECAST_USER -a $RECAST_PASS -a $RECAST_TOKEN -a default)"
+  #- eval "$(recast auth write --basedir authdir)"
+
+  # add the workflow
+  # Use a subshell for catalogue add to evaluate the shell export it produces
+  - $(recast catalogue add $PWD)
+  - recast catalogue ls
+  - recast catalogue describe examples/helloworld
+  - recast catalogue check examples/helloworld
+
+  # run the workflow
+  # default --example value is: default
+  - recast run examples/helloworld --tag myrun
+  - recast run examples/helloworld --example alternative --tag myrun-alternative
+
+  artifacts:
+    paths:
+    - recast-myrun
+    - recast-myrun-alternative
+    expire_in: 1 day
+    when: always

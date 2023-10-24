@@ -1,0 +1,13 @@
+hello_world:
+  process:
+    process_type: 'interpolated-script-cmd'
+    script: |
+      echo Hello my Name is {name} | tee {outputfile}
+  publisher:
+    publisher_type: interpolated-pub
+    publish:
+      outputfile: '{outputfile}'
+  environment:
+    environment_type: docker-encapsulated
+    image: recast/recastatlas
+    imagetag: 'v0.3.0'
