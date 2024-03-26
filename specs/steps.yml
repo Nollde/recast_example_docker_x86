@@ -10,4 +10,4 @@ hello_world:
   environment:
     environment_type: docker-encapsulated
     image: recast/recastatlas
-    imagetag: 'v0.3.0'
+    imagetag: 'v0.4.0'
